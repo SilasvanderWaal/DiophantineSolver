@@ -21,6 +21,7 @@ public class MainFrame {
     private JList result_list;
     private JPanel settings_panel;
     private JButton copy_button;
+    private JButton change_equation;
     private DefaultListModel<String> result_list_input;
 
     public MainFrame(){
@@ -46,6 +47,7 @@ public class MainFrame {
                 result_list.setModel(program.solve_diophantine(amount));
             }
         });
+
         copy_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,6 +61,26 @@ public class MainFrame {
 
                 StringSelection strse1 = new StringSelection(content_to_copy);
                 clip.setContents(strse1, strse1);
+            }
+        });
+        change_equation.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String buff = JOptionPane.showInputDialog("How many welds would you like to include in the equation?");
+                buff = buff.replaceAll("\\s","");
+                if(!isNumeric(buff) || buff.isEmpty()){
+                    JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "Error! Please enter numbers only");
+                    return;
+                }
+                int n = Integer.parseInt(buff);
+                int[] new_values = new int[n];
+                for (int i = 0; i < n; i++) {
+                    do {
+                        buff = JOptionPane.showInputDialog("Please enter the " + (i + 1) + ":e " + "weld price");
+                    } while (buff.isEmpty() || !isNumeric(buff));
+                    new_values[i] = Integer.parseInt(buff);
+                }
+                program.change_equation(new_values);
             }
         });
     }
