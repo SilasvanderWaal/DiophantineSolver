@@ -51,7 +51,8 @@ public class Program extends JFrame {
         total_amount_of_variables = list_of_strings.size();
         variables = new int[total_amount_of_variables];
         variables_sum = 0;
-        for (int i = 0; i < total_amount_of_variables; i++) {
+        for (int i = 0; i < total_amount_of_variables - 1; i++) {
+            System.out.println(list_of_strings.get(i));
             variables[i] = Integer.parseInt(list_of_strings.get(i));
             variables_sum += variables[i];
         }
