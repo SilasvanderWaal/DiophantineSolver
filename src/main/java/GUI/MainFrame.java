@@ -78,6 +78,7 @@ public class MainFrame {
         create_mew_template.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "Please right click and create a new .txt file or selected a .txt file to replace");
                 File file = create_file();
                 String buff = JOptionPane.showInputDialog("How many variables would you like to include in the equation?");
                 buff = buff.replaceAll("\\s", "");

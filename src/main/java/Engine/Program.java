@@ -19,6 +19,8 @@ public class Program extends JFrame {
     public Program() {
         ArrayList<String> list_of_strings;
 
+        JOptionPane.showMessageDialog(getRootPane(), "Please select a template from the template folder");
+
         try {
             // Loop until a non-empty file is selected
             do {
@@ -51,9 +53,13 @@ public class Program extends JFrame {
         total_amount_of_variables = list_of_strings.size();
         variables = new int[total_amount_of_variables];
         variables_sum = 0;
-        for (int i = 0; i < total_amount_of_variables - 1; i++) {
-            variables[i] = Integer.parseInt(list_of_strings.get(i));
-            variables_sum += variables[i];
+        for (int i = 0; i < total_amount_of_variables; i++) {
+            String buff;
+            buff = list_of_strings.get(i).replaceAll("\\s", "");
+            if(!buff.isEmpty()) {
+                variables[i] = Integer.parseInt(list_of_strings.get(i));
+                variables_sum += variables[i];
+            }
         }
     }
 
